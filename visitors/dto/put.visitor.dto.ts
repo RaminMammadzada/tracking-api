@@ -1,5 +1,5 @@
 export interface PutVisitorDto {
-    id: string;
-    uid: string;
+    id: number;
+    unequeId: string;
     numberOfVisit: number;
 }

@@ -12,7 +12,7 @@ export class VisitorsRoutes extends CommonRoutesConfig {
         this.app
             .route(`/`)
             .get(
-                visitorsMiddleware.validateVisitorNotExists,
+                visitorsMiddleware.validateVisitorExistance,
                 VisitorsController.createVisitor,
                 visitorsMiddleware.addCookieToResponseAndSend
             );

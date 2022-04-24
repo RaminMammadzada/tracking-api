@@ -10,8 +10,7 @@ class VisitorsController {
     }
 
     async createVisitor(req: express.Request, res: express.Response,  next: express.NextFunction) {
-        res.locals.user = {};
-        res.locals.user.id = await visitorsService.create();        
+        res.locals.user = await visitorsService.create();
         next();
     }
 

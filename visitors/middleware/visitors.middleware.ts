@@ -18,32 +18,27 @@ class UsersMiddleware {
         }
     }
 
-    async validateVisitorNotExists(
+    async updateUserVisitInformationIfExists(
         req: express.Request,
         res: express.Response,
         next: express.NextFunction
     ) {
-        // here is the point we need to add logic
-        console.log("MA COOKIES: ", req.cookies.userId);
+        console.log("req.cookies.user::: ", req.cookies.user);
+        await visitorsService.putByUnequeId(req.cookies.user.unequeId, req.cookies.user)
+        next();
+    }
 
-        if (!req.cookies.userId) {
-            // create new user
-            // create new cookie and add it to res
+    async validateVisitorExistance(
+        req: express.Request,
+        res: express.Response,
+        next: express.NextFunction
+    ) {
+        if (!req.cookies.user) {
             next();
         } else {
-            // update the old users visiting number
-            // continue to welcome old user
-            res.status(201).send(`Welcome old visitor`);
+            await visitorsService.putByUnequeId(req.cookies.user.unequeId, req.cookies.user);
+            res.status(201).send(`Welcome old visitor, the time you visit the page: ${req.cookies.user.numberOfVisit}`);
         }
-
-        // const visitor = await visitorsService.readById(req.params.userId);
-        // if (!visitor) {
-        //     next();
-        // } else {
-        //     res.status(404).send({
-        //         error: `User ${req.params.userId} not found`,
-        //     });
-        // }
     }
 
     async addCookieToResponseAndSend(
@@ -51,15 +46,13 @@ class UsersMiddleware {
         res: express.Response,
         next: express.NextFunction
     ) {
-        // create cookie and add it to reponse
-        // send response
         if (res.locals.user.id) {
             const userId = res.locals.user.id;
-            const visitor = visitorsService.readById(userId)
-            res.cookie("userId", visitor);
+            const visitor = await visitorsService.readById(userId)
+            res.cookie("user", visitor);
             res.status(200).send("Welcome to our page. This is your first time visiting here!");
         }
-        res.status(401).send();
+        next();
     }
 }
 
