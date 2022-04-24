@@ -1,0 +1,23 @@
+version: '3'
+services:
+  tracking_api:
+    container_name: tracking_api
+    image: tracking_api
+    restart: always
+    build: .
+    ports:
+      - "3000:3000"
+    links:
+      - mysql
+  mysql:
+    platform: linux/x86_64
+    image: mysql:5.7
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "3306:3306"
+    expose:
+      - 3306
+    environment:
+      - 'MYSQL_ROOT_PASSWORD=${DB_PASSWORD}'
+      - 'MYSQL_DATABASE=${DB_NAME}'

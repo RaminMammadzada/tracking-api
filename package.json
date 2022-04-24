@@ -9,6 +9,8 @@
     "dev": "nodemon ./app.ts",
     "debug": "export DEBUG=* && npm run start",
     "lint": "npx eslint . --fix",
+    "migrate": "npx sequelize-cli db:create && npx sequelize-cli db:migrate",
+    "migrateAndStart": "npm run migrate && npm run start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
