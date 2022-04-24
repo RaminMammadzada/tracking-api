@@ -6,7 +6,8 @@ const log: debug.IDebugger = debug('app:visitors-controller');
 
 class VisitorsController {
     async listVisitors(req: express.Request, res: express.Response) {
-        res.status(200).send([]);
+        const visitors = await visitorsService.list();
+        res.status(200).send(visitors);
     }
 
     async createVisitor(req: express.Request, res: express.Response,  next: express.NextFunction) {
