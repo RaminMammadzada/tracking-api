@@ -1,5 +1,5 @@
 export interface CreateVisitorDto {
-    id: number;
+    id?: number;
     unequeId: string;
     numberOfVisit: number;
 }
