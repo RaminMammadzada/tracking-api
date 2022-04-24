@@ -7,7 +7,7 @@ class VisitorsService implements CRUD {
         return VisitorsDao.addVisitor();
     }
     async list() {
-        return VisitorsDao.getVisitors();
+        return VisitorsDao.getAllVisitors();
     }
 
     async readById(id: number) {
