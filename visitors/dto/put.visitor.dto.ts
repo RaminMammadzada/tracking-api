@@ -1,4 +1,4 @@
-export interface CreateVisitorDto {
+export interface PutVisitorDto {
     id: string;
     uid: string;
     numberOfVisit: number;

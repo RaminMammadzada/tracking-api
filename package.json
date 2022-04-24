@@ -28,12 +28,14 @@
   },
   "dependencies": {
     "@types/cookie-parser": "^1.4.2",
+    "@types/shortid": "0.0.29",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "debug": "^4.3.4",
     "express": "^4.17.3",
     "express-winston": "^4.2.0",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "shortid": "^2.2.16"
   }
 }

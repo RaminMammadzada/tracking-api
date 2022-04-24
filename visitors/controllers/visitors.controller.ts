@@ -1,5 +1,6 @@
 import express from 'express';
 import debug from 'debug';
+import visitorsService from '../services/visitors.service';
 
 const log: debug.IDebugger = debug('app:visitors-controller');
 
@@ -8,9 +9,10 @@ class VisitorsController {
         res.status(200).send([]);
     }
 
-    async createVisitor(req: express.Request, res: express.Response) {
-        const visitorId = 123;
-        res.status(201).send(`Welcome to the page. This is your first time visiting here. This id assigned to you: ${visitorId}`);
+    async createVisitor(req: express.Request, res: express.Response,  next: express.NextFunction) {
+        res.locals.user = {};
+        res.locals.user.id = await visitorsService.create();        
+        next();
     }
 
     async put(req: express.Request, res: express.Response) {

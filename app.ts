@@ -1,5 +1,5 @@
 "use strict";
-// import cookieParser from 'cookie-parser';
+import cookieParser from 'cookie-parser';
 
 import express from 'express';
 import * as http from 'http';
@@ -16,6 +16,8 @@ const routes: Array<CommonRoutesConfig> = [];
 const debugLog: debug.IDebugger = debug('app');
 
 app.use(express.json());
+
+app.use(cookieParser('myCookieSecret'));
 
 app.use(cors());
 

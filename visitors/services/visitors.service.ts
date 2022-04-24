@@ -1,11 +1,16 @@
 import { CRUD } from '../../common/crud.interface';
+import VisitorsDao from '../daos/visitors.dao';
 
 class VisitorsService implements CRUD {
-    async create(resource: any) {
-        return null;
+    async create(resource?: any) {
+        return VisitorsDao.addVisitor();
     }
-    async list(limit: number) {
-        return null;
+    async list() {
+        return VisitorsDao.getVisitors();
+    }
+
+    async readById(id: string) {
+        return VisitorsDao.getVisitorByUID(id);
     }
 }
 
