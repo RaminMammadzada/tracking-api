@@ -23,7 +23,7 @@ routes.push(new VisitorsRoutes(app));
 
 const runningMessage = `Server running at http://localhost:${port}`;
 
-server.listen(port, () => {
+export default server.listen(port, () => {
     routes.forEach((route: CommonRoutesConfig) => {
         debugLog(`Routes configured for ${route.getName()}`);
     });
